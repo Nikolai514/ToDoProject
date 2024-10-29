@@ -1,0 +1,19 @@
+Task: Build a Simple To-do Application with a Twist.
+
+Requirements:
+
+Select technical Stacks as you want.
+-Setup basic CRUD (create, read, apdite, delete) for managing to-do items.
+
+-Setup user authentication simply(email/password/username)
+
+-setup form validation/err handling
+-users must login before doing something.
+(all endpoints must be secared by login)
+-In frontend
+.users must be allowed to create, edit, delete to-dos.
+.must be able to filter by status.
+
+Criteria: 
+-Code quality and structure-API design
+-UI/UX design and responsiveness, -Twist.

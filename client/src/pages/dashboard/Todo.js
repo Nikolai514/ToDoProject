@@ -1,36 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Col, Row, Card } from 'react-bootstrap';
-import { useTodo, useTags } from './../../redux/hooks';
+import React, { useState } from 'react';
+import { Form } from 'react-bootstrap';
+import { useTodo } from './../../redux/hooks';
 
 import Input from './../../atoms/Input';
 import Button from './../../atoms/Button';
+import { Select, Space, Col, Row, Card, DatePicker } from 'antd';
+//const { RangePicker } = DatePicker;
+
+const options = [
+  {
+    value: 0,
+    label: "Web3",
+  },
+  {
+    value: 1,
+    label: "React",
+  },
+  {
+    value: 2,
+    label: "Node",
+  },
+  {
+    value: 3,
+    label: "MongoDB",
+  },
+  {
+    value: 4,
+    label: "MySQL",
+  },
+  {
+    value: 5,
+    label: "PHP",
+  },
+  {
+    value: 6,
+    label: "JavaScript",
+  },
+  {
+    value: 7,
+    label: "TypeScript",
+  },
+  {
+    value: 8,
+    label: "HTML",
+  }
+];
 
 const Todo = ({ description, setModal }) => {
   const { addTodo, todo, loading, updateTodo } = useTodo();
-  // const [formData, setFormData] = useState({
-  //   title: !loading && description === 'Update' ? todo.tags[0].title : '',
-  //   tag: !loading && description === 'Update' ? todo.tags[0].name : '',
-  //   tagId: !loading && description === 'Update' ? todo.tags[0]._id : '',
-  //   text: !loading && description === 'Update' ? todo.text : ''
-  // });
-  console.log(todo)
 
   const [formData, setFormData] = useState({
-    tag: !loading && description === 'Update' && todo.tags && todo.tags[0] ? todo.tags[0].name : '',
-    tagId: !loading && description === 'Update' && todo.tags && todo.tags[0] ? todo.tags[0]._id : '',
+    tag: !loading && description === 'Update' ? todo.tags : 1,
+    tagId: !loading && description === 'Update' ? todo.tags : 1,
     text: !loading && description === 'Update' ? todo.text : '',
     title: !loading && description === 'Update' ? todo.title : '',
+    categories: !loading && description === 'Update' ? todo.categories : '',
+    due_date: !loading && description === 'Update' ? todo.due_date : '',
   });
 
   //const { getTags, tags } = useTags();
 
-  const tags = [{name: "Select", _id: 0}, {name: "Low", _id: 1}, {name: "Medium", _id: 2}, {name: "High", _id: 3}];
+  const tags = [{label: "Low", value: 1}, {label: "Medium", value: 2}, {label: "High", value: 3}];
 
   //useEffect(() => {
   //  getTags();
   //}, [getTags]);
 
-  const { title, text, tag, tagId } = formData;
+  const { title, text, tag, tagId, due_date, categories } = formData;
 
   const onChange = (e) => {
     return setFormData(
@@ -48,52 +84,127 @@ const Todo = ({ description, setModal }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    description === 'Add' && addTodo({ title, text, tagId, tag });
-    description === 'Update' && updateTodo({ title, text, tagId, tag }, todo._id);
+    description === 'Add' && addTodo({ title, text, tagId, tag, due_date, categories });
+    description === 'Update' && updateTodo({ title, text, tagId, tag, due_date, categories }, todo._id);
     setModal({ isOpen: false });
   };
 
-  console.log(tags)
+  const selPriority = (e) => {
+    setFormData(
+      {
+        ...formData,
+        tagId: e,
+        tag: e === 1 ? 'Low' : e === 2 ? 'Medium' : 'High'
+      }
+    );
+  }
+
+  const onOk = (value) => {
+    setFormData(
+      {
+        ...formData,
+        due_date: value.$d,
+      }
+    );
+  };
+
+  const handleChange = (value) => {
+    setFormData(
+      {
+        ...formData,
+        categories: value,
+      }
+    );
+  };
+
   return loading ? (
     <h2>Loading</h2>
   ) : (
-    <Card className="todo-form p-4">
-      <Card.Body>
-        <Row className="d-flex justify-content-between align-items-center mb-5">
-          <Card.Title>{description} Todo</Card.Title>
-
-          <Row className="d-flex justify-content-between flex-nowrap"></Row>
-        </Row>
-        <Form>
-          <Form.Row>
-            <Col xs={12} sm={12} md={8}>
-              <Col xs={12} sm={12} md={12}>
-                <Input
-                  label="Title"
-                  id="todo-title"
-                  type="text"
-                  value={title}
-                  name="title"
-                  onChange={(e) => onChange(e)}
-                  autoComplete="off"
-                />
-              </Col>
-              <Col xs={12} sm={12} md={12}>
-                <Input
-                  label="Todo"
-                  id="todo-text"
-                  type="text"
-                  value={text}
-                  name="text"
-                  onChange={(e) => onChange(e)}
-                  autoComplete="off"
-                />
-              </Col>
-            </Col>
-            <Col xs={12} sm={12} md={4}>
+    <Card title={`${description} Todo`} bordered={false}>
+      <Form>
+          <Row>
+            <Col xs={24} sm={24} md={24} lg={24} xl={24} className='mb-3'>
               <Input
+              placeholder="Enter Title" 
+                id="todo-title"
+                type="text"
+                value={title}
+                name="title"
+                onChange={(e) => onChange(e)}
+                autoComplete="off"
+              />
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={24} xl={24} className='mb-3'>
+              <Form.Control 
+                as="textarea" 
+                rows={4} 
+                placeholder="Enter description" 
+                value={text}
+                name="text"
+                onChange={(e) => onChange(e)}
+                id="todo-text"
+              />
+            </Col>
+          </Row>
+          
+          <Col xs={24} sm={24} md={24} lg={24} xl={24} className='mb-3'>
+            <Space
+              style={{
+                width: '100%',
+              }}
+              direction="vertical"
+            >
+              <Select
+                mode="multiple"
+                allowClear
+                size="large"
+                style={{
+                  width: '100%',
+                }}
+                placeholder="Please select Categories"
+                //defaultValue={}
+                onChange={handleChange}
+                options={options}
+              />
+            </Space>
+          </Col>
+
+          <Row justify="space-between">
+            <Col xs={24} sm={24} md={24} lg={11} xl={11} className='mb-3'>
+                <DatePicker
+                  showTime
+                  placeholder="End Date"
+                  size="large"
+                  style={{
+                    width: '100%',
+                  }}
+                  onChange={(value, dateString) => {
+                    console.log('Selected Time: ', value);
+                    console.log('Formatted Selected Time: ', dateString);
+                  }}
+                  onOk={onOk}
+                />
+            </Col>
+
+            <Col xs={24} sm={24} md={24} lg={11} xl={11} className='mb-3'>
+              <Select
+                showSearch
+                size="large"
+                style={{
+                  width: '100%',
+                }}
+                defaultValue={description === 'Update' ? tags[todo.tags-1].label : {label: "Low", value: 1}}
+                placeholder="Priority"
+                optionFilterProp="label"
+                filterSort={(optionA, optionB) =>
+                  (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                }
+                onChange={selPriority}
+                options={tags}
+              />
+              {/* <Input
                 as="select"
-                label="Todo Tag"
+                //label="Todo Tag"
                 id={`todo-tag-${description}`}
                 type="text"
                 value={tag}
@@ -113,7 +224,7 @@ const Todo = ({ description, setModal }) => {
                     </option>
                   );
                 })}
-              </Input>
+              </Input> */}
               <Input
                 inputTextRight="X"
                 inputTextRightOnClick={() => {
@@ -131,19 +242,18 @@ const Todo = ({ description, setModal }) => {
                 autoComplete="off"
               />
             </Col>
-          </Form.Row>
+          </Row>
 
-          <Button
-            variant="secondary"
-            text={description === 'Update' ? 'Update Todo' : 'Add Todo'}
-            onClick={(e) => onSubmit(e)}
-            color="white"
-            type="submit"
-            className="float-right"
-            id={`todo-update-add-button-${description}`}
-          />
-        </Form>
-      </Card.Body>
+        <Button
+          variant="secondary"
+          text={description === 'Update' ? 'Update Todo' : 'Add Todo'}
+          onClick={(e) => onSubmit(e)}
+          color="white"
+          type="submit"
+          className="float-right"
+          id={`todo-update-add-button-${description}`}
+        />
+      </Form>
     </Card>
   );
 };

@@ -36,8 +36,11 @@ const TodoSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  updated_at: {
+  due_date: {
     type: Date
+  },
+  categories: {
+    type: Array
   }
 });
 

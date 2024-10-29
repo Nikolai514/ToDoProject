@@ -14,30 +14,29 @@ const title = [
   {
     title: 'Priority',
     fieldName: 'tags',
-    className: 'col-xs-2'
+    className: 'col-xs-2',
   },
   {
     title: 'Title',
     fieldName: 'title',
-    className: 'col-xs-2'
-  },,
+    className: 'col-xs-2',
+  },
   {
     title: 'Description',
     fieldName: 'text',
-    className: 'col-xs-2'
+    className: 'col-xs-2',
   },
   {
-    title: 'Created At',
+    title: 'Created/Updated At',
     fieldName: 'date',
     className: 'col-xs-3'
   },
-
   {
     title: 'Edit',
     fieldName: 'icon',
 
     icons: ['Edit', 'Check', 'TrashAlt'],
-    className: 'col-xs-3'
+    className: 'col-xs-3',
   }
 ];
 
@@ -116,6 +115,7 @@ const TodoList = () => {
     <>
       <Modal
         isOpen={modal.isOpen}
+        size='lg'
         modalClose={() => setModal({ isOpen: false })}
         centered={true}
       >

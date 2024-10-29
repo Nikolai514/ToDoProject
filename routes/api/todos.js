@@ -62,6 +62,8 @@ router.post(
           //  : [tag],
         text: req.body.text,
         user: req.user.id,
+        categories: req.body.categories,
+        due_date: req.body.due_date
       });
 
       const todo = await newTodo.save();
@@ -120,6 +122,9 @@ router.put(
         todo.text = req.body.text;
         todo.title = req.body.title;
         todo.tags = req.body.tagId;
+        todo.categories = req.body.categories,
+        todo.due_date = req.body.due_date,
+        todo.created_at = new Date().now
         //todo.tags =
         //  tag._id.toString() === "5f5689a2d096a9b777ea4124"
         //    ? [createdTag]

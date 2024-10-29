@@ -5,7 +5,7 @@ import './Modal.css'
 const Modal = ({ children, isOpen, modalClose, dialogClassName, centered }) => {
   return (
     <>
-      <ModalB dialogClassName={dialogClassName} centered={centered} show={isOpen} onHide={modalClose}>
+      <ModalB dialogClassName={dialogClassName} centered={centered} show={isOpen} onHide={modalClose}  size="lg">
         {children}
       </ModalB>
     </>

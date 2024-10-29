@@ -4,7 +4,7 @@ import React from 'react';
 import NavLinks from './NavLinks';
 import { Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Button from './../../atoms/Button';
+//import Button from './../../atoms/Button';
 import './Navbar.css';
 
 const Header = () => {

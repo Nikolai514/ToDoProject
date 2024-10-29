@@ -9,7 +9,7 @@ import {
   getTodo,
   toggleCompleteTodo
 } from './actions/todo';
-import { setSearch, setSearchTerm, setLocationChanged } from './actions/search';
+import { setSearch, setSearchTerm, setLocationChanged, setStateFilter } from './actions/search';
 import { setPage, setPageItems, setPageSize, setPageReset } from './actions/pagination';
 
 import { getTags } from './actions/tag';
@@ -163,7 +163,6 @@ export function useTags() {
 
 export function useSearch() {
   const dispatch = useDispatch();
-  console.log("search hook")
   const { isActive, searchTerm, filtered } = useSelector(
     (state) => ({
       searchTerm: state.search.searchTerm,
@@ -172,8 +171,6 @@ export function useSearch() {
     }),
     shallowEqual
   );
-
-  console.log(isActive, searchTerm, filtered)
 
   const boundSetSearchTerm = useCallback(
     (term, type) => {
@@ -184,7 +181,6 @@ export function useSearch() {
 
   const boundSetSearch = useCallback(
     (...args) => {
-      console.log(args, "setSearch")
       return dispatch(setSearch(...args));
     },
     [dispatch]
@@ -197,14 +193,14 @@ export function useSearch() {
     [dispatch]
   );
 
-  console.log({
-    filtered,
-    setSearchTerm: boundSetSearchTerm,
-    setSearch: boundSetSearch,
-    setLocationChanged: boundSetLocationChanged,
-    isActive,
-    searchTerm
-  }, 'all')
+  // console.log({
+  //   filtered,
+  //   setSearchTerm: boundSetSearchTerm,
+  //   setSearch: boundSetSearch,
+  //   setLocationChanged: boundSetLocationChanged,
+  //   isActive,
+  //   searchTerm
+  // }, 'all')
 
   return {
     filtered,
@@ -215,6 +211,82 @@ export function useSearch() {
     searchTerm
   };
 }
+
+//+++++++++++++++++++++++++ STATE FILTER TODOS +++++++++++++++++++++++++++++++++++++
+
+export function useStateFilter() {
+  const dispatch = useDispatch();
+  const { filtered } = useSelector((state) => ({
+    filtered: state.search.filtered
+  }), shallowEqual);
+
+  const boundSetStateFilter = useCallback(
+    (...args) => {
+      return dispatch(setStateFilter(...args));
+    },
+    [dispatch]
+  );
+
+  return {
+    filtered,
+    setStateFilter: boundSetStateFilter
+  };
+}
+
+// export function useStateFilter() {
+//   const dispatch = useDispatch();
+//   console.log("search hook")
+//   const { isActive, searchTerm, filtered } = useSelector(
+//     (state) => ({
+//       searchTerm: state.search.searchTerm,
+//       isActive: state.search.isActive,
+//       filtered: state.search.filtered
+//     }),
+//     shallowEqual
+//   );
+
+//   console.log(isActive, searchTerm, filtered, '--------hooks-------')
+
+//   const boundSetSearchTerm = useCallback(
+//     (term, type) => {
+//       return dispatch(setSearchTerm(term, type));
+//     },
+//     [dispatch]
+//   );
+
+//   const boundSetSearch = useCallback(
+//     (...args) => {
+//       console.log(args, "setStateFilter")
+//       return dispatch(setStateFilter(...args));
+//     },
+//     [dispatch]
+//   );
+
+//   const boundSetLocationChanged = useCallback(
+//     (...args) => {
+//       return dispatch(setLocationChanged(...args));
+//     },
+//     [dispatch]
+//   );
+
+//   // console.log({
+//   //   filtered,
+//   //   setSearchTerm: boundSetSearchTerm,
+//   //   setStateFilter: boundSetSearch,
+//   //   setLocationChanged: boundSetLocationChanged,
+//   //   isActive,
+//   //   searchTerm
+//   // }, 'all')
+
+//   return {
+//     filtered,
+//     setSearchTerm: boundSetSearchTerm,
+//     setStateFilter: boundSetSearch,
+//     setLocationChanged: boundSetLocationChanged,
+//     isActive,
+//     searchTerm
+//   };
+// }
 
 //+++++++++++++++++++++++++ PAGINATION +++++++++++++++++++++++++++++++++++++
 export function usePagination() {
