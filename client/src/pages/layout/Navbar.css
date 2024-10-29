@@ -7,5 +7,10 @@
 }
 
 .tv2z-logo {
-  padding: 27px;
+  padding: 2px;
+  width: 100px;
+}
+
+#responsive-navbar-nav{
+  justify-content: flex-end;
 }

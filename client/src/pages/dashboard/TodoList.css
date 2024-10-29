@@ -15,11 +15,6 @@
   font-weight: 700;
   letter-spacing: 0.5px;
 }
-.add-todo-button {
-  position: absolute;
-  top: 20px;
-  right: 10rem;
-}
 
 .todo-button:hover,
 .todo-button:focus {
@@ -33,19 +28,4 @@
 .todo-button:visited {
   background: #12aaeb !important;
   border-color: #12aaeb !important;
-}
-
-@media all and (max-width: 992px) {
-  .add-todo-button {
-    position: absolute;
-    top: 20px;
-    right: 20%;
-    font-size: 1em;
-  }
-}
-
-@media all and (max-width: 750px) {
-  .add-todo-button {
-    position: static;
-  }
 }

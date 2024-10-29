@@ -1,5 +1,7 @@
 /** @format */
 
+import imgLogo from './../../img/download.png';
+
 import React from 'react';
 import NavLinks from './NavLinks';
 import { Navbar, Container } from 'react-bootstrap';
@@ -15,7 +17,7 @@ const Header = () => {
           <img
             className="tv2z-logo"
             alt="TV2Z"
-            src="./assets/tv2z-logo.png"
+            src={imgLogo}
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

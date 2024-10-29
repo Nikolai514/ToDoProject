@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Row, Col } from 'antd';
 
 import { useTodo, useSearch, usePagination } from './../../redux/hooks';
 
@@ -9,13 +10,10 @@ import Modal from './../../atoms/Modal';
 import Button from './../../atoms/Button';
 import Pagination from './../../atoms/Pagination';
 import './TodoList.css';
+import Search from './Search';
+import PageSize from './PageSize';
 
 const title = [
-  {
-    title: 'Priority',
-    fieldName: 'tags',
-    className: 'col-xs-2',
-  },
   {
     title: 'Title',
     fieldName: 'title',
@@ -24,6 +22,11 @@ const title = [
   {
     title: 'Description',
     fieldName: 'text',
+    className: 'col-xs-2',
+  },
+  {
+    title: 'Priority',
+    fieldName: 'tags',
     className: 'col-xs-2',
   },
   {
@@ -122,14 +125,25 @@ const TodoList = () => {
         {modal.type === 'Add' && <Todo description="Add" setModal={setModal} />}
         {modal.type === 'Update' && <Todo description="Update" setModal={setModal} />}
       </Modal>
-      <Button
-        text="Add Todo"
-        onClick={handleShow('add')}
-        color="white"
-        type="submit"
-        className="float-right mb-2 todo-button add-todo-button"
-        id="user-register-button"
-      />
+      <Row className="justify-content-end">
+        <Button
+          text="Add Todo"
+          onClick={handleShow('add')}
+          color="white"
+          type="submit"
+          className="mb-2 todo-button add-todo-button"
+          id="user-register-button"
+        />
+      </Row>
+
+      <Row>
+        <Col xs={24} sm={24} md={2} lg={2} xl={2}>
+          <PageSize />
+        </Col>
+        <Col xs={24} sm={24} md={22} lg={22} xl={22}>
+          <Search />
+        </Col>
+      </Row>
 
       {todos.length === 0 ? (
         <h2 className="m-5 lead">

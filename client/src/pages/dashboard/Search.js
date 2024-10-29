@@ -36,18 +36,18 @@ const Search = () => {
 
   return (
     <Row justify="space-between" style={{ alignItems: "flex-end" }}>
-      <Col>
+      <Col xs={24} sm={24} md={24} lg={4} xl={4} className="form-group">
         <Input
           type="text"
           placeholder="search by tag"
           className="border-top-0 border-left-0 border-right-0"
-          pClassName="mb-0"
+          pClassName="mb-0 qwe"
           onChange={(e) => setSearch(e.target.value)}
           value={isActive ? searchTerm.search : ''}
           id={'search-todo-tag-input'}
         />
       </Col>
-      <Col>
+      <Col xs={24} sm={24} md={24} lg={20} xl={20} className="form-group d-flex justify-content-end">
         <Radio.Group onChange={(e) => setFilter(e.target.value)}>
           <Radio.Button value="all">All</Radio.Button>
           <Radio.Button value="aday">within a day</Radio.Button>
