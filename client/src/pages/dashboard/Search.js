@@ -7,27 +7,11 @@ import { Radio, Row, Col } from 'antd';
 import Input from './../../atoms/Input';
 
 const Search = () => {
-  // const [size, setSize] = useState('large');
-   //const todos = useTodo().todos;
-
   const { setSearchTerm, searchTerm, isActive } = useSearch();
   const { setPageReset } = usePagination();
-  //const { setStateFilter } = useStateFilter();
 
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all');
-
-  
-  // const handleChange = (e) => {
-  //   console.log(e.target.value, '------interface------')
-  //   setPageReset(true);
-  //   setSearchTerm(e.target.value);
-  // };
-
-  // const selStateFilter = (value) => {
-  //   setPageReset(true);
-  //   setStateFilter(value, todos); // Pass your todo data here
-  // };
 
   useEffect(() => {
     setPageReset(true);

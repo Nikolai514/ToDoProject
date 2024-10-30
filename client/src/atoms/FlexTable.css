@@ -78,6 +78,10 @@ html {
   border-left: 5px solid #28a745;
 }
 
+#todo-list-flex-table.flexTable .flexTable-row-unCompleted {
+  border-left: 5px solid #99a99d;
+}
+
 #todo-list-flex-table.flexTable .flexTable-row .flexTable-cell {
   box-sizing: border-box;
   -webkit-box-flex: 1;

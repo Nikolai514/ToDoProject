@@ -13,36 +13,6 @@ import './TodoList.css';
 import Search from './Search';
 import PageSize from './PageSize';
 
-const title = [
-  {
-    title: 'Title',
-    fieldName: 'title',
-    className: 'col-xs-2',
-  },
-  {
-    title: 'Description',
-    fieldName: 'text',
-    className: 'col-xs-2',
-  },
-  {
-    title: 'Priority',
-    fieldName: 'tags',
-    className: 'col-xs-2',
-  },
-  {
-    title: 'Created/Updated At',
-    fieldName: 'date',
-    className: 'col-xs-3'
-  },
-  {
-    title: 'Edit',
-    fieldName: 'icon',
-
-    icons: ['Edit', 'Check', 'TrashAlt'],
-    className: 'col-xs-3',
-  }
-];
-
 const TodoList = () => {
   const { todos, getTodos, deleteTodo, getTodo, toggleCompleteTodo } = useTodo();
 
@@ -153,7 +123,6 @@ const TodoList = () => {
       ) : (
         <FlexTable
           data={pageOfItems}
-          titleData={title}
           iconClick={(e, icon, id) => handleClick(e, icon, id)}
           tableId={'todo-list-flex-table'}
         />

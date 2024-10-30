@@ -1,8 +1,7 @@
-//import axios from "axios";
 import {
-GET_TAGS,
-//GET_TAGS_SUCCESS,
-GET_TAGS_ERROR
+  GET_TAGS,
+  //GET_TAGS_SUCCESS,
+  GET_TAGS_ERROR
 } from "./types";
 
 // Get All Todos

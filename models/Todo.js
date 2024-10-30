@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-//const { default: tag } = require("../client/src/redux/reducers/tag.js");
 const Schema = mongoose.Schema;
 
 const TodoSchema = new Schema({
@@ -25,13 +24,6 @@ const TodoSchema = new Schema({
   tags: {
     type: Number,
   },
-  //tags: [
-  //  //{
-  //  //  name: {
-  //  //    type: String,
-  //  //  },
-  //  //},
-  //],
   date: {
     type: Date,
     default: Date.now,

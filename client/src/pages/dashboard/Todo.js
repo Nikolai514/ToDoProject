@@ -5,6 +5,7 @@ import { useTodo } from './../../redux/hooks';
 import Input from './../../atoms/Input';
 import Button from './../../atoms/Button';
 import { Select, Space, Col, Row, Card, DatePicker } from 'antd';
+import dayjs from 'dayjs';
 //const { RangePicker } = DatePicker;
 
 const options = [
@@ -58,13 +59,7 @@ const Todo = ({ description, setModal }) => {
     due_date: !loading && description === 'Update' ? todo.due_date : '',
   });
 
-  //const { getTags, tags } = useTags();
-
   const tags = [{label: "Low", value: 1}, {label: "Medium", value: 2}, {label: "High", value: 3}];
-
-  //useEffect(() => {
-  //  getTags();
-  //}, [getTags]);
 
   const { title, text, tag, tagId, due_date, categories } = formData;
 
@@ -161,8 +156,8 @@ const Todo = ({ description, setModal }) => {
                 style={{
                   width: '100%',
                 }}
+                value={categories ? categories.map(cat => { return cat && options[cat]}) : null}
                 placeholder="Please select Categories"
-                //defaultValue={}
                 onChange={handleChange}
                 options={options}
               />
@@ -178,6 +173,7 @@ const Todo = ({ description, setModal }) => {
                   style={{
                     width: '100%',
                   }}
+                  value={due_date && dayjs(due_date)}
                   onChange={(value, dateString) => {
                     console.log('Selected Time: ', value);
                     console.log('Formatted Selected Time: ', dateString);
@@ -202,29 +198,7 @@ const Todo = ({ description, setModal }) => {
                 onChange={selPriority}
                 options={tags}
               />
-              {/* <Input
-                as="select"
-                //label="Todo Tag"
-                id={`todo-tag-${description}`}
-                type="text"
-                value={tag}
-                onChange={(e) => onChange(e)}
-                name="tag"
-                autoComplete="off"
-                pClassName={tagId === '5f5689a2d096a9b777ea4124' ? 'd-none' : ''}
-              >
-                {tags.map((tag) => {
-                  return (
-                    <option
-                      disabled={tag._id === '5f568965d096a9b777ea4123'}
-                      option-id={tag._id}
-                      key={tag._id}
-                    >
-                      {tag.name}
-                    </option>
-                  );
-                })}
-              </Input> */}
+
               <Input
                 inputTextRight="X"
                 inputTextRightOnClick={() => {
