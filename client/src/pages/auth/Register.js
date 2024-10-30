@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useAuth } from './../../redux/hooks';
+import { Form } from 'react-bootstrap';
+import { Card, Col, Row } from 'antd';
 
+import { useAuth } from './../../redux/hooks';
 import Input from './../../atoms/Input';
 import Button from './../../atoms/Button';
-import { Form } from 'react-bootstrap';
-
-import { Card, Col, Row } from 'antd';
 
 const Register = () => {
   const { registerUser, isAuthenticated } = useAuth();

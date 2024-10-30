@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useSearch, usePagination } from './../../redux/hooks';
-
-//import { DownloadOutlined } from '@ant-design/icons';
 import { Radio, Row, Col } from 'antd';
 
 import Input from './../../atoms/Input';
+import { useSearch, usePagination } from './../../redux/hooks';
 
 const Search = () => {
   const { setSearchTerm, searchTerm, isActive } = useSearch();

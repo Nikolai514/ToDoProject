@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
+import { Card, Col, Row } from 'antd';
+
 import { useAuth } from './../../redux/hooks';
 import Input from './../../atoms/Input';
 import Button from './../../atoms/Button';
-import { Form } from 'react-bootstrap';
-
-import { Card, Col, Row } from 'antd';
 
 const Login = () => {
   const { loginUser, isAuthenticated } = useAuth();
@@ -76,9 +76,6 @@ const Login = () => {
         </Card>
       </Col>
     </Row>
-    // <Fragment>
-      
-    // </Fragment>
   );
 };
 

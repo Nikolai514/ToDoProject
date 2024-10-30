@@ -3,12 +3,11 @@ import { Row, Col } from 'antd';
 
 import { useTodo, useSearch, usePagination } from './../../redux/hooks';
 
-import Todo from './Todo';
-
 import FlexTable from './../../atoms/FlexTable';
 import Modal from './../../atoms/Modal';
 import Button from './../../atoms/Button';
 import Pagination from './../../atoms/Pagination';
+import Todo from './Todo';
 import './TodoList.css';
 import Search from './Search';
 import PageSize from './PageSize';

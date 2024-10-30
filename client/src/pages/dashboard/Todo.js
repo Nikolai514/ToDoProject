@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
+import { Select, Space, Col, Row, Card, DatePicker } from 'antd';
+import dayjs from 'dayjs';
 import { useTodo } from './../../redux/hooks';
 
 import Input from './../../atoms/Input';
 import Button from './../../atoms/Button';
-import { Select, Space, Col, Row, Card, DatePicker } from 'antd';
-import dayjs from 'dayjs';
 //const { RangePicker } = DatePicker;
 
 const options = [
@@ -49,7 +49,11 @@ const options = [
 
 const Todo = ({ description, setModal }) => {
   const { addTodo, todo, loading, updateTodo } = useTodo();
-
+  
+  const tags = [{label: "Low", value: 1}, {label: "Medium", value: 2}, {label: "High", value: 3}];
+  
+  const { title, text, tag, tagId, due_date, categories } = formData;
+  
   const [formData, setFormData] = useState({
     tag: !loading && description === 'Update' ? todo.tags : 1,
     tagId: !loading && description === 'Update' ? todo.tags : 1,
@@ -58,10 +62,6 @@ const Todo = ({ description, setModal }) => {
     categories: !loading && description === 'Update' ? todo.categories : '',
     due_date: !loading && description === 'Update' ? todo.due_date : '',
   });
-
-  const tags = [{label: "Low", value: 1}, {label: "Medium", value: 2}, {label: "High", value: 3}];
-
-  const { title, text, tag, tagId, due_date, categories } = formData;
 
   const onChange = (e) => {
     return setFormData(

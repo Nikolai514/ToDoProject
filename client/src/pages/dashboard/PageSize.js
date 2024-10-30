@@ -1,6 +1,5 @@
 import React from 'react';
 import { usePagination } from './../../redux/hooks';
-
 import Input from './../../atoms/Input';
 
 const PageSize = () => {

@@ -1,13 +1,13 @@
 /** @format */
 
-import imgLogo from './../../img/download.png';
-
 import React from 'react';
-import NavLinks from './NavLinks';
 import { Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-//import Button from './../../atoms/Button';
+
+import imgLogo from './../../img/download.png';
+import NavLinks from './NavLinks';
 import './Navbar.css';
+//import Button from './../../atoms/Button';
 
 const Header = () => {
   return (
