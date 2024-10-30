@@ -3,30 +3,6 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import { check, validationResult } from 'express-validator';
-// import express from 'express';
-// const router = express.Router();
-// //const config = require("config");
-
-
-// const dropIndexIfExists = async () => {
-//   try {
-//     await User.collection.dropIndex("username_1");
-//     console.log("Dropped index: username_1");
-//   } catch (error) {
-//     if (error.codeName === "IndexNotFound") {
-//       console.log("Index 'username_1' does not exist."); // This message appears if the index doesn't exist
-//     } else {
-//       console.error("Error dropping index:", error); // This message appears if there’s another error
-//     }
-//   }
-// };
-
-// // Call the function to try to drop the index
-// dropIndexIfExists();
-
-// @route    POST api/users
-// @desc     Register user
-// @access   Public
 
 const auth = async (req, res) => {
     try {
@@ -132,21 +108,6 @@ const register = async (req, res) => {
       res.status(500).send("Server error");
     }
 }
-// router.post(
-//   "/",
-//   [
-//     check("name", "Name is required").not().isEmpty(),
-//     check("email", "Please include a valid email").isEmail(),
-//     check(
-//       "password",
-//       "Please enter a password with 6 or more characters"
-//     ).isLength({ min: 6 }),
-//   ],
-
-//   async (req, res) => {
-    
-//   }
-// );
 
 export default {
     auth,

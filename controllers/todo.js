@@ -67,16 +67,6 @@ const upDateData = async (req, res) => {
     }
     try {
       const todo = await Todo.findById(req.params.id);
-      //const tag = await Tag.findById(req.body.tagId);
-
-      //let createdTag = {};
-      //if (tag._id.toString() === "5f5689a2d096a9b777ea4124") {
-      //  const newTag = new Tag({
-      //    name: req.body.tag,
-      //  });
-      //  createdTag = await newTag.save();
-      //}
-
       // Check for ObjectId format and todo
       if (!req.params.id.match(/^[0-9a-fA-F]{24}$/) || !todo) {
         return res.status(404).json({ msg: "Todo not found" });
